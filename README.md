@@ -6,10 +6,10 @@ A simple telegram bot that takes a list of files sent by the user and returns th
 ## Commands
 
 ```
-/list - list of files to merge / compress
-/merge - Merge files (txt and pdf for now)
-/compress - compress files (optional specify part size in MB)
-/clear - Clear the file list
+list - list of files to merge / compress
+merge - Merge files (txt and pdf for now)
+compress - compress files (optional specify part size in MB)
+clear - Clear the file list
 ```
 
 ## Env Vars
@@ -21,5 +21,5 @@ API_HASH - Get this value from https://my.telegram.org/apps
 ```
 
 ## Deploy
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Jess0032/MergeBot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
