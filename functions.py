@@ -30,7 +30,7 @@ def merge_txt(dirpath, filename):
 def zip_files(path, part_size):
     dir_files = path
     partsdir = Path(f"{dir_files.parent}/parts")
-    size = int(part_size) if part_size else 1945.6
+    size = int(part_size) if part_size else 1900
     copy_filter = [{"id": FILTER_COPY}]
 
     try:
