@@ -1,5 +1,4 @@
 Telethon
-telethon-tgcrypto
 cryptg
 PyPDF2
 multivolumefile
