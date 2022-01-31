@@ -85,12 +85,14 @@ async def compress(event):
     size = event.pattern_match.group(1)
     progress_download = await event.respond("Descargando...")
     inicial = datetime.now()
-    for message_id in [x for x in users_list[user_id]]:
+    for message_id in list(users_list[user_id]):
         message: Message = await bot.get_messages(user_id, limit=1, ids=message_id)
         await download_file(message, dirpath)
         users_list[user_id].pop(message_id)
     await progress_download.edit(
-        f"Descargas finalizadas en {str((datetime.now() - inicial).total_seconds())} segundos, procediendo a comprimir.")
+        f'Descargas finalizadas en {(datetime.now() - inicial).total_seconds()} segundos, procediendo a comprimir.'
+    )
+
 
     parts_path = zip_files(dirpath, size)
     await event.respond("Compresión finalizada")
@@ -99,7 +101,9 @@ async def compress(event):
     for file in parts_path.iterdir():
         await upload_file(user_id, file)
     shutil.rmtree(str(parts_path.absolute()))
-    await event.respond(f"Subido en {str((datetime.now() - inicial).total_seconds())} segundos.")
+    await event.respond(
+        f'Subido en {(datetime.now() - inicial).total_seconds()} segundos.'
+    )
 
 
 @bot.on(NewMessage(pattern='/merge'))
@@ -135,7 +139,9 @@ async def merge(event, user_id, name_file_final):
         users_list[user_id].pop(message_id)
 
     await progress_download.edit(
-        f"Descargas finalizadas en {str((datetime.now() - inicial).total_seconds())} segundos, procediendo a unir.")
+        f'Descargas finalizadas en {(datetime.now() - inicial).total_seconds()} segundos, procediendo a unir.'
+    )
+
 
     if mime_type == formats[1]:
         name_file_final = (name_file_final if name_file_final.endswith('.pdf') else name_file_final + '.pdf')
@@ -150,7 +156,9 @@ async def merge(event, user_id, name_file_final):
     progress_upload = await event.respond("Subiendo...")
     await upload_file(user_id, file)
     os.remove(file)
-    await progress_upload.edit(f"Subido en {str((datetime.now() - inicial).total_seconds())} segundos.")
+    await progress_upload.edit(
+        f'Subido en {(datetime.now() - inicial).total_seconds()} segundos.'
+    )
 
 
 async def download_file(message: Message, dirpath: str):
